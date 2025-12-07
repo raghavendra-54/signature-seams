@@ -1,27 +1,23 @@
-# =========================
-# 1) Build stage (with Maven)
-# =========================
-FROM maven:3.9-eclipse-temurin-17 AS build
+# ---- Build stage ----
+FROM maven:3.9.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy Maven config and source code
+# Copy backend pom and source
 COPY pom.xml .
 COPY src ./src
 
-# Build Spring Boot jar (tests skipped for faster build)
+# Build jar
 RUN mvn -DskipTests clean package
 
-# =========================
-# 2) Run stage (only JRE)
-# =========================
+# ---- Run stage ----
 FROM eclipse-temurin:17-jre
 WORKDIR /app
 
-# Copy the built jar from the first stage
-COPY --from=build /app/target/*.jar app.jar
+# Copy jar from build stage
+COPY --from=build /app/target/signature-seams-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose Spring Boot port
+# Expose port
 EXPOSE 8080
 
-# Run the app
+# Run Spring Boot
 ENTRYPOINT ["java", "-jar", "app.jar"]
