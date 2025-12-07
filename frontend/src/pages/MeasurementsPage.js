@@ -53,7 +53,7 @@ export default function MeasurementsPage() {
 
   const handleMeasureMeAI = () => {
     // Replace this with your real MeasureMe AI link
-    window.open("https://your-measureme-ai-link.com", "_blank");
+    window.open("https://6935134d680ce169e6afb2a2--thunderous-syrniki-91da07.netlify.app", "_blank");
   };
 
   return (
