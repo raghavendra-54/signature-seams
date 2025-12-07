@@ -52,9 +52,12 @@ export default function MeasurementsPage() {
   };
 
   const handleMeasureMeAI = () => {
-    // Replace this with your real MeasureMe AI link
-    window.location.href = "https://6935134d680ce169e6afb2a2--thunderous-syrniki-91da07.netlify.app";
-  };
+  window.open(
+    "https://6935134d680ce169e6afb2a2--thunderous-syrniki-91da07.netlify.app",
+    "_blank",
+    "noopener,noreferrer"
+  );
+};
 
   return (
     <div className="container">
